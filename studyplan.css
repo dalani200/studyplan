@@ -19,3 +19,5 @@ body{background:#f7f8f5;color:#20251f}body>.shell,body>.overlay,body>.toast,#stu
 .sp-preview-total,.sp-preview-table tfoot td{font-weight:750;white-space:nowrap}
 .sp-preview-note{margin-top:12px}
 @media(max-width:620px){.sp-modal.sp-modal-schedule{padding:15px}.sp-preview-table{min-width:540px}.sp-preview-table th,.sp-preview-table td{padding:9px}}
+
+.sp-login-links{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:10px}

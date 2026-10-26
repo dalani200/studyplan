@@ -4,6 +4,8 @@ import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from './supabase-config.js';
 const db = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 const root = document.querySelector('#studyplan-app');
 const state = { user:null, tab:'home', week:monday(new Date()), sessions:[], records:[], questions:[], inbox:[], companies:[], settings:null, modal:null, filter:'all' };
+let authMode='signin';
+let passwordRecovery=false;
 const DAY_NAMES=['일요일','월요일','화요일','수요일','목요일','금요일','토요일'];
 const AREAS={mentoring:'멘토링',company:'기업',macro:'매크로'};
 const CATEGORIES={mentoring:'멘토링',company:'기업 분석',macro_portfolio:'매크로·포트폴리오',recall:'회상·복습',inbox:'수신함 정리',optional:'추가 공부',break:'중간 휴식'};
@@ -31,13 +33,27 @@ function flash(msg){let el=document.querySelector('.sp-toast');if(!el){el=docume
 
 async function start(){
   if(!SUPABASE_URL||!SUPABASE_PUBLISHABLE_KEY){login('supabase-config.js의 URL과 publishable key를 확인해 주세요.');return}
+  db.auth.onAuthStateChange((event,next)=>{
+    state.user=next?.user||null;
+    if(event==='PASSWORD_RECOVERY'){passwordRecovery=true;renderPasswordRecovery();return}
+    if(passwordRecovery)return;
+    if(state.user)load();else login();
+  });
   const {data:{session},error}=await db.auth.getSession();if(error){login(error.message);return}
-  state.user=session?.user||null;
-  db.auth.onAuthStateChange((_event,next)=>{state.user=next?.user||null;if(state.user)load();else login()});
+  if(passwordRecovery)return;
+  state.user=session?.user||state.user;
   if(state.user)await load();else login();
 }
-function login(message=''){
-  root.innerHTML=`<section class="sp-card sp-login"><div class="sp-brand"><span class="sp-mark">✓</span>개인 투자 공부</div><h1>스터디 공간</h1><p>이메일 로그인으로 휴대폰과 다른 기기에서도 계획과 기록을 이어가세요.</p><form id="sp-login"><input class="sp-input" type="email" name="email" placeholder="이메일 주소" required><button class="sp-btn primary">로그인 링크 받기</button></form>${message?`<div class="sp-errors">${esc(message)}</div>`:''}</section>`;
+function login(message='',mode=authMode){
+  authMode=mode;
+  const reset=mode==='reset',signup=mode==='signup';
+  const title=reset?'비밀번호 설정':signup?'계정 만들기':'로그인';
+  const description=reset?'계정 이메일로 비밀번호 설정 링크를 보내드려요. 기존 이메일 로그인 계정도 여기서 비밀번호를 만들 수 있어요.':signup?'이메일과 비밀번호를 등록하면 다른 기기에서도 같은 기록을 볼 수 있어요.':'이메일과 비밀번호로 로그인하세요.';
+  const button=reset?'설정 링크 보내기':signup?'계정 만들기':'로그인';
+  root.innerHTML=`<section class="sp-card sp-login"><div class="sp-brand"><span class="sp-mark">✓</span>개인 투자 공부</div><h1>${title}</h1><p>${description}</p><form id="sp-login"><input class="sp-input" type="email" name="email" autocomplete="email" placeholder="이메일 주소" required>${reset?'':`<input class="sp-input" type="password" name="password" autocomplete="${signup?'new-password':'current-password'}" minlength="8" placeholder="비밀번호 (8자 이상)" required>`}<button class="sp-btn primary" type="submit">${button}</button></form><div class="sp-login-links">${reset?'<button class="sp-link" type="button" data-auth-mode="signin">로그인으로 돌아가기</button>':signup?'<button class="sp-link" type="button" data-auth-mode="signin">이미 계정이 있어요</button>':'<button class="sp-link" type="button" data-auth-mode="signup">처음 사용하시나요? 계정 만들기</button><button class="sp-link" type="button" data-auth-mode="reset">비밀번호 설정 / 재설정</button>'}</div>${message?`<div class="sp-errors">${esc(message)}</div>`:''}</section>`;
+}
+function renderPasswordRecovery(message=''){
+  root.innerHTML=`<section class="sp-card sp-login"><div class="sp-brand"><span class="sp-mark">✓</span>개인 투자 공부</div><h1>새 비밀번호 설정</h1><p>새 비밀번호를 입력해 주세요.</p><form id="sp-password-recovery"><input class="sp-input" type="password" name="password" autocomplete="new-password" minlength="8" placeholder="새 비밀번호 (8자 이상)" required><input class="sp-input" type="password" name="confirmPassword" autocomplete="new-password" minlength="8" placeholder="새 비밀번호 확인" required><button class="sp-btn primary" type="submit">비밀번호 저장</button></form>${message?`<div class="sp-errors">${esc(message)}</div>`:''}</section>`;
 }
 async function load(){
   const uid=state.user.id;
@@ -143,7 +159,31 @@ root.addEventListener('click',async e=>{const b=e.target.closest('[data-act],[da
   if(a==='save-question-review')await saveQuestionReview();if(a==='logout')await db.auth.signOut();if(a==='backup')backup();if(a==='copy-prompt'){const text=document.querySelector('#ai-prompt')?.textContent||'';await navigator.clipboard.writeText(text);flash('검증 문구를 복사했어요.')}
 });
 root.addEventListener('change',async e=>{const t=e.target;if(t.matches('[data-act="company-stage"]')){const {error}=await db.from('study_companies').update({project_week:Number(t.value)}).eq('id',t.dataset.id);if(error)flash(error.message);else await load()}});
-root.addEventListener('submit',async e=>{if(e.target.id==='sp-login'){e.preventDefault();const email=new FormData(e.target).get('email');const {error}=await db.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});if(error)login(error.message);else login('이메일의 로그인 링크를 눌러 주세요.')}if(e.target.id==='modal-form'){e.preventDefault();await saveModal()}if(e.target.id==='question-review-form'){e.preventDefault();await saveQuestionReview()}});
+root.addEventListener('click',e=>{const mode=e.target.closest('[data-auth-mode]')?.dataset.authMode;if(mode)login('',mode)});
+root.addEventListener('submit',async e=>{
+  if(e.target.id==='sp-login'){
+    e.preventDefault();const form=e.target,button=form.querySelector('button[type="submit"]'),values=new FormData(form),email=String(values.get('email')).trim(),password=String(values.get('password')||'');
+    button.disabled=true;
+    let result;
+    if(authMode==='reset'){
+      button.textContent='보내는 중…';result=await db.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
+      if(result.error)login(result.error.message,'reset');else login('비밀번호 설정 링크를 이메일로 보냈어요. 링크를 열어 새 비밀번호를 정해 주세요.','reset');
+    }else if(authMode==='signup'){
+      button.textContent='계정 만드는 중…';result=await db.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname}});
+      if(result.error)login(result.error.message,'signup');else if(result.data.session){authMode='signin'}else login('계정 확인 이메일을 한 번 열어 확인을 마치면, 이후에는 이메일과 비밀번호로 로그인할 수 있어요.','signin');
+    }else{
+      button.textContent='로그인 중…';result=await db.auth.signInWithPassword({email,password});
+      if(result.error)login('로그인에 실패했어요. 이메일과 비밀번호를 확인하거나, 기존 계정이면 “비밀번호 설정 / 재설정”을 이용해 주세요.','signin');else authMode='signin';
+    }
+  }
+  if(e.target.id==='sp-password-recovery'){
+    e.preventDefault();const values=new FormData(e.target),password=String(values.get('password')),confirmPassword=String(values.get('confirmPassword'));
+    if(password!==confirmPassword){renderPasswordRecovery('두 비밀번호가 같지 않아요.');return}
+    const {error}=await db.auth.updateUser({password});if(error)renderPasswordRecovery(error.message);else{passwordRecovery=false;authMode='signin';state.user=(await db.auth.getUser()).data.user;await load()}
+  }
+  if(e.target.id==='modal-form'){e.preventDefault();await saveModal()}
+  if(e.target.id==='question-review-form'){e.preventDefault();await saveQuestionReview()}
+});
 function questionFormReview(q){return `<form id="question-review-form"><div class="sp-fields"><div class="sp-field full"><label>질문</label><div class="sp-help">${esc(q.question)}</div></div><div class="sp-field full"><label>자료를 보지 않고 적은 답</label><textarea class="sp-text" name="answer" required>${esc(q.last_answer||'')}</textarea></div></div><div class="sp-modal-actions"><button class="sp-btn" type="button" data-act="cancel">취소</button><button class="sp-btn primary">회상 저장·다음 복습 예약</button></div></form>`}
 async function saveQuestionReview(){const form=document.querySelector('#question-review-form');if(!form?.reportValidity())return;const q=state.modal.row,stage=Number(q.review_stage),today=iso(new Date());let next=null,completed_at=null;if(stage===0)next=iso(addDays(parse(today),1));else if(stage===1){let sat=addDays(parse(today),(6-parse(today).getDay()+7)%7);if(iso(sat)===today)sat=addDays(sat,7);next=iso(sat)}else if(stage===2)next=iso(addDays(parse(today),28));else completed_at=new Date().toISOString();const {error}=await db.from('study_questions').update({review_stage:Math.min(stage+1,3),due_on:next||today,last_answer:new FormData(form).get('answer'),completed_at}).eq('id',q.id);if(error)flash(error.message);else{state.modal=null;await load();flash(completed_at?'4주 복습을 마쳤어요.':'다음 복습일을 예약했어요.')}}
 // Review form is rendered separately so the user writes their own answer before consulting sources.
