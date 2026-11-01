@@ -35,13 +35,13 @@ body{background:#f7f8f5;color:#20251f}body>.shell,body>.overlay,body>.toast,#stu
 
  /* Study home: use the available width and give each action room to breathe. */
 
-.sp{max-width:1500px;width:100%;padding:clamp(22px,3.2vw,52px) clamp(22px,4vw,64px) 52px;font-size:15px;line-height:1.55}
+.sp{max-width:1500px;width:100%;padding:24px clamp(22px,4vw,64px) 36px;font-size:15px;line-height:1.5}
 
 .sp button,.sp input,.sp select,.sp textarea{font-size:inherit}
 
 .sp button{min-height:42px}
 
-.sp-top{margin-bottom:30px}
+.sp-top{margin-bottom:24px}
 
 .sp-brand{font-size:17px}
 
@@ -741,36 +741,47 @@ body{background:#f7f8f5;color:#20251f}body>.shell,body>.overlay,body>.toast,#stu
  .sp-day-aside summary{font-size:10px}
 }
 
-/* Shared type scale: home stays compact by spacing, not by shrinking its text. */
-.sp{font-size:14px}
-.sp-btn{font-size:13px}
-.sp-btn.sm{font-size:12px}
-.sp-tabs button{font-size:13px}
-.sp-home>.sp-tabs>button{font-size:13px}
-.sp-day-task-title{font-size:14px}
-.sp-day-task-meta{font-size:12px}
-.sp-day-actions .sp-link{font-size:12px}
-.sp-day-aside summary{font-size:13px}
-.sp-first-task h2{font-size:21px}
-.sp-first-task-heading{font-size:13px}
-.sp-first-task p{font-size:13px}
-.sp-home-support summary{font-size:14px}
-.sp-home-options>summary,.sp-metrics>summary{font-size:12px}
-.sp-week-item span{font-size:12px}
-.sp-week-item small{font-size:11px}
+/* Shared type and page rhythm across Home, Learning · Practice, and Library. */
+.sp{font-size:15px;line-height:1.5}
+.sp-btn{font-size:14px}
+.sp-btn.sm{font-size:13px}
+.sp-tabs button{font-size:14px}
+.sp-home>.sp-tabs>button{font-size:14px;min-height:42px}
+.sp.sp-home{max-width:1500px;padding:24px clamp(22px,4vw,64px) 26px;font-size:15px;line-height:1.5}
+.sp-home>.sp-top{margin-bottom:24px}
+.sp-home>.sp-tabs{margin:0 0 16px;padding:5px;gap:5px}
+.sp-day-section-heading h2{font-size:17px}
+.sp-day-section-heading span{font-size:12px}
+.sp-availability{font-size:13px}
+.sp-availability strong{font-size:14px}
+.sp-first-task h2{font-size:23px}
+.sp-first-task-heading,.sp-first-task p{font-size:14px}
+.sp-day-row{min-height:44px}
+.sp-day-task-title{font-size:15px}
+.sp-day-task-meta{font-size:13px}
+.sp-day-actions .sp-link{font-size:13px}
+.sp-day-aside summary{font-size:14px}
+.sp-home-options>summary,.sp-metrics>summary{font-size:14px}
+.sp-week-item span{font-size:13px}
+.sp-week-item small{font-size:12px}
+.sp-home>.sp-footer{font-size:12px}
 
 @media(max-width:700px){
  .sp{font-size:14px}
- .sp-home .sp-actions .sp-btn{font-size:11px}
- .sp-day-row{min-height:38px}
+ .sp.sp-home{padding:16px 14px 24px;font-size:14px}
+ .sp-home>.sp-top{margin-bottom:22px}
+ .sp-home .sp-actions .sp-btn{min-height:40px;padding:6px 9px;font-size:12px}
+ .sp-home>.sp-tabs{margin-bottom:12px}
+ .sp-home>.sp-tabs>button{min-height:40px;padding:7px 5px;font-size:13px}
+ .sp-day-row{min-height:42px}
  .sp-day-task-title{font-size:14px}
- .sp-day-task-meta{font-size:12px;line-height:1.35}
- .sp-day-actions .sp-link{font-size:11px;min-height:32px;padding:3px 4px}
- .sp-order-actions button{font-size:12px!important}
- .sp-day-aside summary{font-size:12px}
- .sp-first-task h2{font-size:19px}
- .sp-first-task-heading,.sp-first-task p{font-size:12px}
- .sp-home-options>summary,.sp-metrics>summary{font-size:13px}
- .sp-week-item span{font-size:12px}
- .sp-week-item small{font-size:11px}
+ .sp-day-task-meta{font-size:12px;line-height:1.4}
+ .sp-day-actions .sp-link{font-size:12px;min-height:34px;padding:3px 5px}
+ .sp-order-actions button{font-size:13px!important}
+ .sp-day-aside summary{font-size:13px}
+ .sp-first-task h2{font-size:20px}
+ .sp-first-task-heading,.sp-first-task p{font-size:13px}
+ .sp-home-options>summary,.sp-metrics>summary{font-size:14px}
+ .sp-week-item span{font-size:13px}
+ .sp-week-item small{font-size:12px}
 }
