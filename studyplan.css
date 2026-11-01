@@ -21,3 +21,12 @@ body{background:#f7f8f5;color:#20251f}body>.shell,body>.overlay,body>.toast,#stu
 @media(max-width:620px){.sp-modal.sp-modal-schedule{padding:15px}.sp-preview-table{min-width:540px}.sp-preview-table th,.sp-preview-table td{padding:9px}}
 
 .sp-login-links{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:10px}
+.sp-more-nav{position:relative;flex:none}
+.sp-more-nav>summary{list-style:none;padding:8px 11px;border-radius:8px;color:#727b72;font-size:11px;font-weight:650;white-space:nowrap}
+.sp-more-nav>summary::-webkit-details-marker{display:none}
+.sp-more-nav[open]>summary{background:white;color:#26352b}
+.sp-more-nav>div{position:absolute;z-index:10;right:0;top:calc(100% + 5px);min-width:190px;max-height:65vh;overflow:auto;padding:6px;background:white;border:1px solid #e6e9e3;border-radius:11px;box-shadow:0 12px 32px #26342618}
+.sp-more-nav>div button{display:block;width:100%;min-height:40px;text-align:left;border:0;border-radius:7px;background:transparent;padding:9px 11px;color:#465047;font-size:12px}
+.sp-more-nav>div button:hover,.sp-more-nav>div button.active{background:#eff4ee;color:#355a40}
+.sp-focus form .sp-focus-save{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:3px}
+@media(max-width:620px){.sp-focus form .sp-focus-save{align-items:flex-start;flex-direction:column}.sp-focus form .sp-focus-save button{width:100%}}
