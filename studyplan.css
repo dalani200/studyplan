@@ -740,3 +740,37 @@ body{background:#f7f8f5;color:#20251f}body>.shell,body>.overlay,body>.toast,#stu
  .sp-row-detail summary{font-size:10px;line-height:14px;height:14px}
  .sp-day-aside summary{font-size:10px}
 }
+
+/* Shared type scale: home stays compact by spacing, not by shrinking its text. */
+.sp{font-size:14px}
+.sp-btn{font-size:13px}
+.sp-btn.sm{font-size:12px}
+.sp-tabs button{font-size:13px}
+.sp-home>.sp-tabs>button{font-size:13px}
+.sp-day-task-title{font-size:14px}
+.sp-day-task-meta{font-size:12px}
+.sp-day-actions .sp-link{font-size:12px}
+.sp-day-aside summary{font-size:13px}
+.sp-first-task h2{font-size:21px}
+.sp-first-task-heading{font-size:13px}
+.sp-first-task p{font-size:13px}
+.sp-home-support summary{font-size:14px}
+.sp-home-options>summary,.sp-metrics>summary{font-size:12px}
+.sp-week-item span{font-size:12px}
+.sp-week-item small{font-size:11px}
+
+@media(max-width:700px){
+ .sp{font-size:14px}
+ .sp-home .sp-actions .sp-btn{font-size:11px}
+ .sp-day-row{min-height:38px}
+ .sp-day-task-title{font-size:14px}
+ .sp-day-task-meta{font-size:12px;line-height:1.35}
+ .sp-day-actions .sp-link{font-size:11px;min-height:32px;padding:3px 4px}
+ .sp-order-actions button{font-size:12px!important}
+ .sp-day-aside summary{font-size:12px}
+ .sp-first-task h2{font-size:19px}
+ .sp-first-task-heading,.sp-first-task p{font-size:12px}
+ .sp-home-options>summary,.sp-metrics>summary{font-size:13px}
+ .sp-week-item span{font-size:12px}
+ .sp-week-item small{font-size:11px}
+}
