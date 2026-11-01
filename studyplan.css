@@ -295,6 +295,102 @@ body{background:#f7f8f5;color:#20251f}body>.shell,body>.overlay,body>.toast,#stu
 
 .sp :focus-visible{outline:3px solid #c27843;outline-offset:3px}
 
+/* Home is a working surface: keep the day plan readable without a tall dashboard scroll. */
+.sp.sp-home{max-width:1500px;padding:12px 26px 14px;font-size:13px;line-height:1.35}
+.sp-home>.sp-top{margin-bottom:10px;min-height:36px}
+.sp-home>.sp-hero{display:none}
+.sp-home>.sp-tabs{margin:0 0 9px;padding:3px;gap:3px}
+.sp-home>.sp-tabs>button{min-width:90px;min-height:34px;padding:6px 12px;font-size:13px}
+.sp-home-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 9px}
+.sp-home-date{display:flex;align-items:center;justify-content:space-between;gap:20px;flex:1}
+.sp-home-date>div:first-child{display:flex;align-items:center;gap:10px}
+.sp-date-control{display:flex;align-items:center;gap:6px}
+.sp-date-control input{font:inherit;color:#344337;border:1px solid #e0e6dd;border-radius:7px;padding:5px 7px;background:#fff}
+.sp-plan-switch{display:flex;align-items:center;gap:2px;padding:3px;border-radius:8px;background:#eef2ed}
+.sp-plan-switch button{border:0;background:transparent;border-radius:6px;padding:7px 12px;color:#687569;font:inherit;font-weight:650;cursor:pointer}
+.sp-plan-switch button.active{background:#fff;color:#2d4433;box-shadow:0 1px 3px #0001}
+.sp-week-controls{display:flex;align-items:center;gap:8px}
+.sp-week-controls strong{font-size:13px;min-width:145px;text-align:center}
+.sp-day-home{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(220px,.65fr);gap:18px;align-items:start}
+.sp-day-main{min-width:0;display:grid;gap:8px}
+.sp-availability{display:flex;align-items:center;gap:10px;padding:0 2px;color:#778078;font-size:12px}
+.sp-availability strong{color:#38483b;font-size:13px;margin-right:6px}
+.sp-availability.over span{color:#9b503b}
+.sp-availability .sp-link{margin-left:auto;min-height:32px;font-size:12px}
+.sp-availability-edit{display:flex;align-items:center;gap:7px;margin-left:auto}
+.sp-availability-edit label{font-size:12px;color:#657064}
+.sp-availability-edit .sp-input{width:82px;padding:6px 8px}
+.sp-first-task{padding:12px 15px;background:#f0f5ef;border-left:4px solid #426b55;border-radius:10px}
+.sp-first-task-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#68776a;font-size:12px}
+.sp-first-task-body{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:3px}
+.sp-first-task-body>div{min-width:0}
+.sp-first-task h2{margin:0;color:#26352a;font-size:19px;line-height:1.25;letter-spacing:-.025em}
+.sp-first-task p{margin:3px 0 0;color:#68756a;font-size:12px}
+.sp-first-task .sp-first-next{color:#3e5e45}
+.sp-first-task .sp-start{min-width:92px;min-height:40px}
+.sp-day-schedule{padding:0 2px}
+.sp-day-section-heading{display:flex;align-items:center;justify-content:space-between;margin:2px 0 3px}
+.sp-day-section-heading h2{font-size:14px;margin:0;color:#334035}
+.sp-day-section-heading span{font-size:11px;color:#818a81}
+.sp-day-rows{display:grid}
+.sp-day-row{display:grid;grid-template-columns:24px minmax(0,1fr) auto;align-items:center;gap:8px;min-height:40px;padding:3px 4px;border-bottom:1px solid #e9ede7}
+.sp-day-row.is-first{background:#f7faf6}
+.sp-day-row.non-study{color:#8c948c;background:transparent}
+.sp-order{align-self:start;padding-top:5px;color:#8a948a;font-size:11px;text-align:center}
+.sp-day-task-main{min-width:0}
+.sp-day-task-title{font-size:13px;line-height:1.25;font-weight:700;color:#333e34;overflow-wrap:anywhere}
+.sp-day-row.non-study .sp-day-task-title{font-weight:500;color:#737d73}
+.sp-day-task-meta{display:flex;align-items:center;flex-wrap:wrap;gap:3px 9px;margin-top:2px;color:#818a81;font-size:11px}
+.sp-day-actions{display:flex;align-items:center;gap:2px;white-space:nowrap}
+.sp-day-actions .sp-link{font-size:11px;padding:4px 5px;min-height:30px}
+.sp-order-actions{display:inline-flex;gap:0;border-left:1px solid #e8ece7;margin-left:3px;padding-left:3px}
+.sp-order-actions button{font-size:12px!important}
+.sp-order-actions button:disabled{opacity:.25;cursor:default}
+.sp-row-detail{margin-top:2px;color:#606d61;font-size:12px}
+.sp-row-detail summary{width:max-content;cursor:pointer;color:#6e7b70;font-size:11px}
+.sp-row-detail>div{padding:3px 0 5px 9px;line-height:1.5}
+.sp-row-detail p{margin:3px 0}
+.sp-add-session{margin-top:7px;min-height:34px}
+.sp-day-aside{display:grid;gap:0;border-top:1px solid #e4e9e2}
+.sp-day-aside>details,.sp-day-aside>.sp-resume-elsewhere{padding:10px 2px;border-bottom:1px solid #e4e9e2}
+.sp-day-aside summary{cursor:pointer;color:#445247;font-size:12px;font-weight:700}
+.sp-support-body{padding:4px 0 0;color:#69756a;font-size:12px;line-height:1.45}
+.sp-support-body p{margin:4px 0}
+.sp-day-aside .sp-link{min-height:30px;font-size:11px}
+.sp-day-aside .sp-btn{min-height:32px}
+.sp-resume-elsewhere{font-size:12px;color:#59665b}
+.sp-resume-elsewhere p{margin:4px 0}
+.sp-home-options,.sp-metrics{margin-top:7px;padding:0;background:transparent}
+.sp-home-options>summary,.sp-metrics>summary{cursor:pointer;color:#707b71;font-size:11px;padding:3px 1px}
+.sp-option-links{margin-top:5px}
+.sp-week-summary{display:flex;align-items:center;gap:20px;padding:3px 1px 8px;color:#717c72;font-size:12px}
+.sp-week-summary strong{color:#3c4c3e}
+.sp-week-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px;align-items:start}
+.sp-week-day{min-width:0;border-top:2px solid #dfe6de;padding-top:5px}
+.sp-week-day.is-today{border-color:#426b55}
+.sp-week-day-head{width:100%;display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:1px 5px;border:0;background:none;text-align:left;padding:2px 2px 5px;cursor:pointer;color:#344336}
+.sp-week-day-head span{font-size:12px;font-weight:750}
+.sp-week-day-head strong{font-size:12px}
+.sp-week-day-head small{grid-column:1/-1;color:#818a81;font-size:10px}
+.sp-week-day-items{display:grid;gap:1px}
+.sp-week-item{display:flex;justify-content:space-between;align-items:baseline;gap:4px;width:100%;border:0;border-bottom:1px solid #eef1ec;background:transparent;text-align:left;padding:4px 2px;color:#3d483e;cursor:pointer}
+.sp-week-item span{font-size:10px;line-height:1.2;overflow-wrap:anywhere}
+.sp-week-item small{flex:0 0 auto;font-size:9px;color:#879087}
+.sp-week-item.non-study{color:#8d958d}
+.sp-week-empty{padding:6px 2px;color:#8b938b;font-size:10px}
+.sp-week-links{display:flex;justify-content:flex-end;gap:5px;margin-top:9px}
+.sp-week-links .sp-btn{min-height:32px}
+.sp-focus-inline{display:grid;grid-template-columns:auto minmax(180px,1fr) auto 85px;align-items:center;gap:8px;margin:8px 0}
+.sp-focus-resource{margin:10px 0;padding:10px 13px;background:#f5f7f3;border-radius:9px}
+.sp-focus-resource h2{font-size:14px;margin:0 0 4px}
+.sp-focus-resource h3{font-size:14px;margin:0 0 4px}
+.sp-focus-resource p{font-size:13px;margin:4px 0;line-height:1.45}
+.sp-finish-date-label{display:block;margin-top:12px;font-size:13px}
+.sp-finish-date{max-width:220px;margin-top:4px}
+.sp-finish-actions{display:flex;gap:8px;margin:17px 0 10px}
+.sp-finish-actions .sp-btn{min-height:42px}
+.sp-footer{margin-top:8px;font-size:10px}
+
 
 
 @media(max-width:1050px){
@@ -315,6 +411,52 @@ body{background:#f7f8f5;color:#20251f}body>.shell,body>.overlay,body>.toast,#stu
 
 }
 
+@media(max-width:900px){
+ .sp-week-grid{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:11px}
+ .sp-day-home{grid-template-columns:minmax(0,1fr) minmax(190px,.55fr);gap:12px}
+ .sp-day-actions .sp-link{padding:4px 3px}
+}
+@media(max-width:700px){
+ .sp.sp-home{padding:10px 12px 12px;font-size:13px}
+ .sp-home>.sp-top{margin-bottom:8px}
+ .sp-home>.sp-top:has(.sp-actions){flex-wrap:nowrap;justify-content:space-between}
+ .sp-home>.sp-top:has(.sp-actions)>.sp-brand{flex:0 1 auto}
+ .sp-home>.sp-top:has(.sp-actions)>.sp-actions{width:auto;justify-content:flex-end}
+ .sp-home .sp-actions .sp-btn{min-height:34px;padding:5px 7px;font-size:10px}
+ .sp-home-controls{align-items:flex-start;flex-direction:column;gap:7px}
+ .sp-home-date{width:100%;gap:7px}
+ .sp-home-date>div:first-child{gap:6px}
+ .sp-home-date .sp-eyebrow{font-size:10px}
+ .sp-date-control input{max-width:145px}
+ .sp-week-controls{align-self:flex-end}
+ .sp-day-home{grid-template-columns:1fr;gap:6px}
+ .sp-day-main{gap:5px}
+ .sp-availability{flex-wrap:wrap;gap:4px 8px;font-size:11px}
+ .sp-availability-edit{width:100%;margin:2px 0 4px}
+ .sp-first-task{padding:10px 12px}
+ .sp-first-task h2{font-size:17px}
+ .sp-first-task-body{gap:8px}
+ .sp-first-task .sp-start{min-width:76px;min-height:40px}
+ .sp-day-row{grid-template-columns:19px minmax(0,1fr) auto;gap:5px;min-height:39px;padding:3px 1px}
+ .sp-day-task-title{font-size:12px}
+ .sp-day-task-meta{font-size:10px;gap:2px 6px}
+ .sp-day-actions{gap:0}
+ .sp-day-actions .sp-link{font-size:10px;padding:4px 3px;min-height:30px}
+ .sp-order-actions{padding-left:2px;margin-left:2px}
+ .sp-row-detail summary{font-size:10px}
+ .sp-day-aside{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:0;border-bottom:1px solid #e4e9e2}
+ .sp-day-aside>details{padding:6px 5px;border:0;border-top:1px solid #e4e9e2}
+ .sp-day-aside summary{font-size:10px;line-height:1.3}
+ .sp-resume-elsewhere{grid-column:1/-1}
+ .sp-week-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .sp-week-summary{gap:9px;flex-wrap:wrap;font-size:11px}
+ .sp-week-item span{font-size:11px}
+ .sp-week-item small{font-size:10px}
+ .sp-week-links{flex-wrap:wrap;justify-content:flex-start}
+ .sp-week-links .sp-btn{flex:1 1 calc(50% - 5px)}
+ .sp-focus-inline{grid-template-columns:1fr 1fr}
+ .sp-finish-actions{display:grid;grid-template-columns:1fr}
+}
 @media(max-width:800px){
 
  .sp-home-layout{grid-template-columns:1fr}
@@ -509,4 +651,92 @@ body{background:#f7f8f5;color:#20251f}body>.shell,body>.overlay,body>.toast,#stu
 
  .sp-modal-actions .sp-btn{flex:1}
 
+}
+
+@media(max-width:900px){
+ .sp-week-grid{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:11px}
+ .sp-day-home{grid-template-columns:minmax(0,1fr) minmax(190px,.55fr);gap:12px}
+ .sp-day-actions .sp-link{padding:4px 3px}
+}
+@media(max-width:700px){
+ .sp.sp-home{padding:10px 12px 12px;font-size:13px}
+ .sp-home>.sp-top{margin-bottom:8px}
+ .sp-home>.sp-top:has(.sp-actions){flex-wrap:nowrap;justify-content:space-between}
+ .sp-home>.sp-top:has(.sp-actions)>.sp-brand{flex:0 1 auto}
+ .sp-home>.sp-top:has(.sp-actions)>.sp-actions{width:auto;justify-content:flex-end}
+ .sp-home .sp-actions .sp-btn{min-height:34px;padding:5px 7px;font-size:10px}
+ .sp-home-controls{align-items:flex-start;flex-direction:column;gap:7px}
+ .sp-home-date{width:100%;gap:7px}
+ .sp-home-date>div:first-child{gap:6px}
+ .sp-home-date .sp-eyebrow{font-size:10px}
+ .sp-date-control input{max-width:145px}
+ .sp-week-controls{align-self:flex-end}
+ .sp-day-home{grid-template-columns:1fr;gap:6px}
+ .sp-day-main{gap:5px}
+ .sp-availability{flex-wrap:wrap;gap:4px 8px;font-size:11px}
+ .sp-availability-edit{width:100%;margin:2px 0 4px}
+ .sp-first-task{padding:10px 12px}
+ .sp-first-task h2{font-size:17px}
+ .sp-first-task-body{gap:8px}
+ .sp-first-task .sp-start{min-width:76px;min-height:40px}
+ .sp-day-row{grid-template-columns:19px minmax(0,1fr) auto;gap:5px;min-height:39px;padding:3px 1px}
+ .sp-day-task-title{font-size:12px}
+ .sp-day-task-meta{font-size:10px;gap:2px 6px}
+ .sp-day-actions{gap:0}
+ .sp-day-actions .sp-link{font-size:10px;padding:4px 3px;min-height:30px}
+ .sp-order-actions{padding-left:2px;margin-left:2px}
+ .sp-row-detail summary{font-size:10px}
+ .sp-day-aside{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:0;border-bottom:1px solid #e4e9e2}
+ .sp-day-aside>details{padding:6px 5px;border:0;border-top:1px solid #e4e9e2}
+ .sp-day-aside summary{font-size:10px;line-height:1.3}
+ .sp-resume-elsewhere{grid-column:1/-1}
+ .sp-week-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .sp-week-summary{gap:9px;flex-wrap:wrap;font-size:11px}
+ .sp-week-item span{font-size:11px}
+ .sp-week-item small{font-size:10px}
+ .sp-week-links{flex-wrap:wrap;justify-content:flex-start}
+ .sp-week-links .sp-btn{flex:1 1 calc(50% - 5px)}
+ .sp-focus-inline{grid-template-columns:1fr 1fr}
+ .sp-finish-actions{display:grid;grid-template-columns:1fr}
+}
+
+/* Final responsive overrides: keep the compact working view within the viewport. */
+.sp.sp-home{width:100%;min-width:0}
+.sp-week-item span{font-size:11px}
+.sp-week-item small{font-size:10px}
+@media(max-width:700px){
+ .sp-home-date{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center}
+ .sp-home-date>div:first-child{display:flex;min-width:0;gap:5px;align-items:center}
+ .sp-home-date>div:first-child>.sp-eyebrow{display:none}
+ .sp-date-control{min-width:0}
+ .sp-date-control input{width:134px;max-width:134px;min-width:0;padding:5px}
+ .sp-date-control .sp-btn{min-height:34px;padding:5px 8px}
+ .sp-plan-switch{flex-shrink:0}
+ .sp-plan-switch button{padding:6px 8px;font-size:12px}
+ .sp-day-row{grid-template-columns:17px minmax(0,1fr) auto;gap:4px;min-height:31px;padding:2px 0}
+ .sp-day-task-main{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0 5px}
+ .sp-day-task-title{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px}
+ .sp-day-task-meta{min-width:0;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0;font-size:9px;line-height:1.25}
+ .sp-day-task-meta span:nth-child(2){display:none}
+ .sp-row-detail{grid-column:1/-1;margin:0;height:13px;line-height:13px}
+ .sp-row-detail summary{font-size:9px;line-height:13px;height:13px}
+ .sp-row-detail>div{font-size:11px;line-height:1.4}
+ .sp-day-actions .sp-link{font-size:9px;padding:2px;min-height:26px}
+ .sp-order-actions{padding-left:1px;margin-left:1px}
+ .sp-order-actions button{font-size:11px!important}
+ .sp-day-aside>details{padding:5px 4px}
+ .sp-day-aside summary{font-size:9px}
+}
+.sp.sp-home{box-sizing:border-box;width:100%;min-width:0}
+.sp .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:700px){.sp-date-control .sp-btn{min-width:48px;white-space:nowrap}.sp-plan-switch button{min-width:66px;padding-inline:8px;white-space:nowrap}}
+@media(max-width:700px){
+ .sp-day-row{min-height:34px}
+ .sp-day-task-title{font-size:12px}
+ .sp-day-task-meta{font-size:10px}
+ .sp-day-actions .sp-link{font-size:10px;min-height:30px}
+ .sp-order-actions button{font-size:12px!important}
+ .sp-row-detail{height:14px;line-height:14px}
+ .sp-row-detail summary{font-size:10px;line-height:14px;height:14px}
+ .sp-day-aside summary{font-size:10px}
 }
